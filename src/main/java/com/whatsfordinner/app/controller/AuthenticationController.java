@@ -1,17 +1,14 @@
 package com.whatsfordinner.app.controller;
 
-import com.whatsfordinner.app.forms.RegisterUserForm;
 import com.whatsfordinner.app.models.User;
 import com.whatsfordinner.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 public class AuthenticationController {
@@ -38,10 +35,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public String processRegisterForm(@Valid RegisterUserForm registerUserForm,
-                                      BindingResult bindingResult, Model model,
-                                      @ModelAttribute @Valid User newUser, Errors errors,
-                                      String verifypassword, Principal principal) {
+    public String processRegisterForm(Model model, @ModelAttribute @Valid User newUser, Errors errors,
+                                      String verifypassword) {
 
         if (userService.isUserAlreadyPresent(newUser) == true) {
             model.addAttribute( "duplicateEmailError", "This email is already registered with an account");

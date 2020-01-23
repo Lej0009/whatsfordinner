@@ -1,29 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Creative - Start Bootstrap Theme</title>
-
-  <!-- Font Awesome Icons -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
-
-  <!-- Plugin CSS -->
-  <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
-
-  <!-- Theme CSS - Includes Bootstrap -->
-  <link href="css/creative.css" rel="stylesheet">
-
-</head>
+<head th:replace="fragments :: head"></head>
 
 <body id="page-top">
 
@@ -37,10 +15,13 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/home">Home</a>
+            <a class="nav-link js-scroll-trigger" href="#page-top">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/home">My Ingredients</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/login">Login</a>
@@ -48,10 +29,12 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/register">Register</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#">Logout</a>
-          </li>
         </ul>
+        <a href="javascript: document.logoutForm.submit()" role="menuitem" id="logout"> Logout</a>
+
+        <form class="form-inline my-2 my-lg-0" name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+          <input hidden type="submit" value="Sign Out"/>
+        </form>
       </div>
     </div>
   </nav>
@@ -61,12 +44,12 @@
     <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center text-center">
         <div class="col-lg-10 align-self-end">
-          <h1 class="text-white font-weight-bold">What's For Dinner?</h1>
+          <h1 class="text-white font-weight-bold" id="main-brand-logo">What's For Dinner?</h1>
           <hr class="divider my-4">
         </div>
         <div class="col-lg-8 align-self-baseline">
           <p class="text-white font-weight-light mb-5">Tell us what ingredients you have at home, and we will provide recipes that you can make with what you have!</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Get Started</a>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Learn More</a>
         </div>
       </div>
     </div>
@@ -79,8 +62,10 @@
         <div class="col-lg-8 text-center">
           <h2 class="text-white mt-0">You have the ingredients, we got the recipes!</h2>
           <hr class="divider light my-4">
-          <p class="text-white-50 mb-4">Tired of browsing your pantry and scratching your head trying to come up with what you can make with what you have? That's where we come in! We will provide you with recipes that use the ingredients you already have.</p>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+          <p class="text-white-50 mb-4">Tired of browsing your pantry and scratching your head trying to come up with what you can make with what you have? That's where we come in! We will provide you with recipes that use the ingredients you already have. This lets you find recipes that either maximize the usage of ingredients you have at hand or minimize the ingredients that you don't currently have.
+
+          </p>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="/login">Get Started!</a>
         </div>
       </div>
     </div>
@@ -95,28 +80,28 @@
         <div class="col-lg-3 col-md-6 text-center">
           <div class="mt-5">
             <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Naomi Hahn</h3>
+            <h3 class="h4 mb-2">Naomi H.</h3>
             <p class="text-muted mb-0">"This makes life so much easier! Thank you What's for Dinner!"</p>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center">
           <div class="mt-5">
             <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Tiffany Braswell</h3>
-            <p class="text-muted mb-0">"I actually use what I have now, and have cut down on trips to the grocery store."</p>
+            <h3 class="h4 mb-2">Tiffany B.</h3>
+            <p class="text-muted mb-0">"I actually use what I have now, and I take less trips to the grocery store."</p>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center">
           <div class="mt-5">
             <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Bethany Jones</h3>
-            <p class="text-muted mb-0">"This has helped cut down dinner making time significantly! Love this app!"</p>
+            <h3 class="h4 mb-2">Bethany J.</h3>
+            <p class="text-muted mb-0">"This has helped cut down dinner time significantly! Love this app!"</p>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center">
           <div class="mt-5">
             <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Brandon Howell</h3>
+            <h3 class="h4 mb-2">Brandon H.</h3>
             <p class="text-muted mb-0">"What's not to love? No more time wasted figuring out what I can make."</p>
           </div>
         </div>
@@ -125,22 +110,13 @@
   </section><br/><br/><br/>
 
   <!-- Footer -->
-  <footer class="bg-light py-5">
+  <footer th:fragment="footer" class="bg-light py-5">
     <div class="container">
-      <div class="small text-center text-muted">Copyright &copy; 2020 What's for Dinner</div>
+      <div class="small text-center text-muted" id="copyright">Copyright &copy; 2020 What's for Dinner</div>
     </div>
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="js/creative.min.js"></script>
+  <div th:replace="fragments :: javascript-footer"></div>
 
 </body>
 

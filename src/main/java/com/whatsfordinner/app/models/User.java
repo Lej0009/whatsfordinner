@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,12 +32,12 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "user_expense", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "expense_id"))
-//    private Set<Expense> expenses;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_ingredient", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private Set<Ingredient> ingredients;
 
 //    @OneToMany(mappedBy = "user")
-//    private Set<Expense> expenses;
+//    private Set<Ingredient> ingredients;
 
     public User() {
     }
@@ -79,12 +80,4 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
-//    public Set<Expense> getExpenses() {
-//        return expenses;
-//    }
-//
-//    public void setExpenses(Set<Expense> expenses) {
-//        this.expenses = expenses;
-//    }
 }

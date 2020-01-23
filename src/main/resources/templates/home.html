@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+
+<body class="page-body" id="page-body">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="../">What's for Dinner?</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="../home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="../#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="../login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="../register">Register</a>
+                    </li>
+                </ul>
+                <a href="javascript: document.logoutForm.submit()" role="menuitem" id="logout"> Logout</a>
+
+                <form class="form-inline my-2 my-lg-0" name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                    <input hidden type="submit" value="Sign Out"/>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h4 id="labels" th:text="${title}">Default Title</h4><br/>
+        <nav th:replace="fragments :: ingredientnavigation"></nav>
+
+        <table id="labels" class="table">
+            <tr>
+                <th>Ingredient</th>
+            </tr>
+
+            <tr th:each="ingredient : ${ingredients}">
+                <td th:text="${ingredient.ingredientName}"></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div th:replace="fragments :: javascript-footer"></div>
+
+</body>
+</html>
