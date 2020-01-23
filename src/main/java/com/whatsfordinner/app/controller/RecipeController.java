@@ -1,43 +1,38 @@
 package com.whatsfordinner.app.controller;
 
-import com.whatsfordinner.app.Recipe;
 import com.whatsfordinner.app.dao.IngredientDao;
-import com.whatsfordinner.app.models.User;
+import com.whatsfordinner.app.models.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/")
 public class RecipeController {
 
     @Autowired
     private IngredientDao ingredientDao;
 
-    public List<Recipe> recipeList;
-
-    public List<Recipe> getRecipes(List<String> ingredients) {
-
-        for (String ingredient : ingredients) {
-            final String url = ("https://api.spoonacular.com/recipes/findByIngredients?ingredients="
-                    + ingredients);
-            RestTemplate restTemplate = new RestTemplate();
-            Recipe recipe = restTemplate.getForObject(url, Recipe.class);
-            recipeList.add(recipe);
-        }
-        return recipeList;
-    }
+    public List<Results> recipeResultsList;
 
     @GetMapping("/home/recipes")
-    public String displayRecipes(Model model, Recipe recipe, User user) {
+    public List<Results> getRecipeResults(List<String> ingredients, Model model) {
 
-        model.addAttribute("recipes", recipeList);
+        for (String ingredient : ingredients) {
+            final String url = ("https://recipe-puppy.p.rapidapi.com/?i="
+                    + ingredient);
+            RestTemplate restTemplate = new RestTemplate();
+            Results result = restTemplate.getForObject(url, Results.class);
+            recipeResultsList.add(result);
+        }
+        model.addAttribute("recipes", recipeResultsList);
         model.addAttribute("title", "Your Recipes");
 
-        return "recipes";
+        return recipeResultsList;
     }
-
 }

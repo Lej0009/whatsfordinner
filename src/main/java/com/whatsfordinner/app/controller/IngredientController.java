@@ -32,7 +32,7 @@ public class IngredientController implements WebMvcConfigurer {
     }
 
     @GetMapping("/home/add")
-    public String displayAddIngredientForm(Model model, User user) {
+    public String displayAddIngredientForm(Model model) {
         model.addAttribute("title", "Add Ingredient");
         return "add";
     }

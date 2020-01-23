@@ -44,9 +44,10 @@
 
         <tr th:each="recipe : ${recipes}">
             <td th:text="${recipe.title}"></td>
-            <td th:text="${recipe.missedIngredients}"></td>
-            <td th:text="${recipe.usedIngredients}"></td>
-            <td th:text="${recipe.unusedIngredients}"></td>
+            <td th:text="${recipe.thumbnail}"></td>
+            <td th:text="${recipe.href}"></td>
+            <td th:text="${recipe.ingredients}"></td>
+
         </tr>
     </table>
 
