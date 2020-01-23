@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/#about").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/updatepassword").permitAll()
+                .antMatchers("/forgotpassword").permitAll()
                 .antMatchers("/home**").hasAnyAuthority("ADMIN_USER", "APP_USER", "1")
                 .anyRequest().authenticated()
                 .and()

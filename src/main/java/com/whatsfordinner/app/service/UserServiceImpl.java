@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isUserAlreadyPresent(User user) {
         boolean isUserAlreadyExists = false;
-        User existingUser = userDao.findByEmail(user.getEmail());
+        Optional<User> existingUser = userDao.findByEmail(user.getEmail());
         // If user is found in database, then the user already exists.
         if(existingUser != null){
             isUserAlreadyExists = true;
@@ -45,8 +46,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changeUserPassword(User user, @RequestParam String password) {
-        user.setPassword(encoder.encode(password));
+    public Optional findUserByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
+
+    @Override
+    public Optional findUserByResetToken(String resetToken) {
+        return userDao.findByResetToken(resetToken);
+    }
+
+    @Override
+    public void save(User user) {
         userDao.save(user);
     }
 
