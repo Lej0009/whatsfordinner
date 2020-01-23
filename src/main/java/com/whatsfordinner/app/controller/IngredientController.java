@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
@@ -46,14 +45,7 @@ public class IngredientController implements WebMvcConfigurer {
 
         if(!errors.hasErrors()) {
 
-//            Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-//            String name=auth.getName();
-//            UserDetails userDetail= (UserDetails)auth.getPrincipal();
-//
-//            User currentUser= userDao.findByPassword(userDetail.getPassword());
-//            Integer id= currentUser.getUserId();
-
-            //TODO get user ID to save along with the ingredient
+            //TODO get user ID to save with the ingredient
 //            Optional<User> currentUser = userDao.findByEmail(principal.getName());
 //            Integer id = currentUser.getUserId();
 //

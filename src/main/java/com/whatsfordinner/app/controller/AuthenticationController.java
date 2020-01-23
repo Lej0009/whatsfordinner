@@ -36,7 +36,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public String processRegisterForm(Model model, @ModelAttribute @Valid User newUser, Errors errors,
-                                      String verifypassword) {
+                                      @RequestParam String verifypassword) {
 
         if (userService.isUserAlreadyPresent(newUser) == true) {
             model.addAttribute( "duplicateEmailError", "This email is already registered with an account");

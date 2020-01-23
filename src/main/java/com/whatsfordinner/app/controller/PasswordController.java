@@ -146,6 +146,8 @@ public class PasswordController {
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+
+        //TODO verify host and port
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 

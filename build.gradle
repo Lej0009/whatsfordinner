@@ -49,7 +49,11 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.2.4.RELEASE'
 
-
+	//for the api
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.2.4.RELEASE', ext: 'pom'
+	// https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator
+	compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.1.Final'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
