@@ -54,6 +54,9 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.2.4.RELEASE', ext: 'pom'
 	// https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator
 	compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.1.Final'
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
+
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'

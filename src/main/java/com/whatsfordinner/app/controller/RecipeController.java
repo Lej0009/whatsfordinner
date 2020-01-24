@@ -1,38 +1,70 @@
 package com.whatsfordinner.app.controller;
 
 import com.whatsfordinner.app.dao.IngredientDao;
+import com.whatsfordinner.app.models.Ingredient;
+import com.whatsfordinner.app.models.Recipe;
 import com.whatsfordinner.app.models.Results;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/")
 public class RecipeController {
 
     @Autowired
     private IngredientDao ingredientDao;
 
-    public List<Results> recipeResultsList;
+    public String ingredientString;
 
-    @GetMapping("/home/recipes")
-    public List<Results> getRecipeResults(List<String> ingredients, Model model) {
+    @GetMapping("home/recipes")
+    public String getRecipeResults(Model model) {
 
-        for (String ingredient : ingredients) {
-            final String url = ("https://recipe-puppy.p.rapidapi.com/?i="
-                    + ingredient);
-            RestTemplate restTemplate = new RestTemplate();
-            Results result = restTemplate.getForObject(url, Results.class);
-            recipeResultsList.add(result);
+        Iterable<Ingredient> ingredients = ingredientDao.findAll();
+
+        String repStr = "";
+
+        for (Ingredient ingredient : ingredients) {
+            ingredientString = ingredientString + ingredient.getIngredientName() + ",";
+            String subStr = ingredientString.substring(0, ingredientString.length() - 1);
+            repStr = subStr.replaceAll("null", "");
         }
-        model.addAttribute("recipes", recipeResultsList);
-        model.addAttribute("title", "Your Recipes");
 
-        return recipeResultsList;
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.ALL);
+//        HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+        //Add the Jackson Message converter
+        messageConverters.add(new MappingJackson2HttpMessageConverter());
+        //Add the message converters to the restTemplate
+        restTemplate.setMessageConverters(messageConverters);
+
+        final String url = ("http://www.recipepuppy.com/api/?i="
+                + repStr);
+        Recipe recipes = restTemplate.getForObject(url, Recipe.class);
+
+
+
+        if (recipes != null) {
+            model.addAttribute("recipes", recipes);
+            model.addAttribute("title", "Your Recipes");
+            return "recipes";
+        }
+        return "error";
     }
+
 }
