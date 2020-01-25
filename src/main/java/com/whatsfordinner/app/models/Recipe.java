@@ -3,14 +3,16 @@ package com.whatsfordinner.app.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Recipe {
 
     private String title;
-    private Float version;
     private String href;
-    private Array results;
+    private String ingredients;
+    private ArrayList<Results> results;
 
     public Recipe() {
     }
@@ -23,14 +25,6 @@ public class Recipe {
         this.title = title;
     }
 
-    public Float getVersion() {
-        return version;
-    }
-
-    public void setVersion(Float version) {
-        this.version = version;
-    }
-
     public String getHref() {
         return href;
     }
@@ -39,22 +33,35 @@ public class Recipe {
         this.href = href;
     }
 
-    public Array getResults() {
-        return results;
+    public String getIngredients() {
+        return ingredients;
     }
 
-    public void setResults(Array results) {
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    //    public Array getResults() {
+//        return results;
+//    }
+//
+//    public void setResults(Array results) {
+//        this.results = results;
+//    }
+
+    public void setResults(ArrayList<Results> results) {
         this.results = results;
     }
+
 
     @Override
     public String toString() {
         return "Recipe{" +
-                "title='" + title + '\'' +
-                ", version=" + version +
+                "title=" + title +
                 ", href=" + href +
+                ", ingredients=" + ingredients +
                 ", results=" + results +
-                '}';
+                "}";
     }
 
 }

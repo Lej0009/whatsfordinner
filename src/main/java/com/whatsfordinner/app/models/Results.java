@@ -48,11 +48,11 @@ public class Results {
     @Override
     public String toString() {
         return "Results{" +
-                "title='" + title + '\'' +
+                "title=" + title +
                 ", href=" + href +
                 ", ingredients=" + ingredients +
                 ", thumbnail=" + thumbnail +
-                '}';
+                "}";
     }
 
 }
