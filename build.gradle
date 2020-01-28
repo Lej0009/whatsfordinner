@@ -8,10 +8,6 @@ group = 'com.whatsfordinner'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-// might not need these plugins
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
 
 configurations {
 	developmentOnly
