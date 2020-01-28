@@ -33,11 +33,12 @@
     <div class="container">
 
         <h5 id="labels" th:text="${title}">Default Title</h5><br/>
+        <nav th:replace="fragments :: backnavigation"></nav>
 
         <form method="post">
             <div th:each="ingredient : ${ingredients}" class="checkbox">
                 <input type="checkbox" name="ingredientIds" th:value="${ingredient.ingredientId}" th:id="${ingredient.ingredientId}"/>
-                <label th:for="${ingredient.ingredientId}" th:text="${ingredient.ingredientName}"></label> -
+                <label th:for="${ingredient.ingredientId}" th:text="${ingredient.ingredientName}" id="labels"></label>
             </div><br/>
             <button type="submit" class="btn btn-primary">Remove Ingredient</button>
         </form>

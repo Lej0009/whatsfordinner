@@ -11,12 +11,12 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "ingredient_id")
-    private Integer ingredientId;
+    public Integer ingredientId;
 
     @NotBlank
     @Column(name = "ingredient_name")
     @Max(30)
-    private String ingredientName;
+    public String ingredientName;
 
     //    @ManyToOne
     @Column(name = "user_id")

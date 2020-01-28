@@ -58,7 +58,7 @@ public class IngredientController implements WebMvcConfigurer {
     }
 
     @GetMapping("/home/delete")
-    public String displayRemoveIngredientForm(Model model) {
+    public String displayRemoveIngredientForm(Model model, User user) {
 
         model.addAttribute("ingredients", ingredientDao.findAll());
         model.addAttribute("title", "Remove Ingredient");
@@ -67,6 +67,7 @@ public class IngredientController implements WebMvcConfigurer {
 
     @PostMapping("/home/delete")
     public String processRemoveIngredientForm(@RequestParam Integer[] ingredientIds) {
+
 
         for (Integer ingredientId : ingredientIds) {
             ingredientDao.deleteById(ingredientId);

@@ -2,6 +2,7 @@ package com.whatsfordinner.app.controller;
 
 import com.whatsfordinner.app.models.Recipe;
 import com.whatsfordinner.app.models.Results;
+import com.whatsfordinner.app.models.User;
 import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.whatsfordinner.app.dao.IngredientDao;
 import com.whatsfordinner.app.models.Ingredient;
 import com.whatsfordinner.app.models.Recipe;
+import com.whatsfordinner.app.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.client.ClientHttpResponse;
@@ -27,7 +28,8 @@ public class RestController {
 
     public Recipe getRecipeResults() throws IOException {
 
-        Iterable<Ingredient> ingredients = ingredientDao.findAll();
+        User user = new User();
+        Iterable<Ingredient> ingredients = ingredientDao.findAllByUserId(user.getUserId());
         String searchStr = "";
 
         // iterate through ingredients, create search string to add to backend of api address
