@@ -29,7 +29,7 @@ public class RestController {
     public Recipe getRecipeResults() throws IOException {
 
         User user = new User();
-        Iterable<Ingredient> ingredients = ingredientDao.findAllByUserId(user.getUserId());
+        Iterable<Ingredient> ingredients = ingredientDao.findAll();
         String searchStr = "";
 
         // iterate through ingredients, create search string to add to backend of api address
