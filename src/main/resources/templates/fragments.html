@@ -13,10 +13,12 @@
 
     <!-- Font Awesome Icons -->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <script src="https://kit.fontawesome.com/84f8ad594e.js" crossorigin="anonymous"></script>
 
     <!-- Plugin CSS -->
     <link href="../vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
@@ -33,6 +35,10 @@
     <a href="home/add">Add Ingredient</a> |
     <a href="home/delete">Remove Ingredient</a> |
     <a href="home/recipes">Search Recipes</a>
+</nav>
+
+<nav id="labels" th:fragment="backnavigation" text-decoration="none">
+    <a href="../home"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
 </nav>
 
 <body>

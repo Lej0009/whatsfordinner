@@ -9392,11 +9392,13 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #f4623a !important;
+  /* color: #f4623a !important; */
+  color: #29a329 !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #d6370c !important;
+  /* color: #d6370c !important; */
+  color: #5cd65c !important;
 }
 
 .text-secondary {
@@ -9707,7 +9709,7 @@ hr.light {
 
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-attachment: fixed;
   background-size: cover;
 }
 

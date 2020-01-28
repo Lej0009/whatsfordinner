@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 
-<head th:replace="fragments :: head">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="hello.js"></script>
-</head>
+<head th:replace="fragments :: head"></head>
 
 <body class="page-body" id="page-body">
 
@@ -35,28 +32,23 @@
 
 <div class="container">
     <h4 id="labels" th:text="${title}">Default Title</h4><br/>
-    <nav th:replace="fragments :: ingredientnavigation"></nav>
+    <nav th:replace="fragments :: backnavigation"></nav>
 
     <table id="labels" class="table">
         <tr>
             <th>Recipe</th>
-            <th>Missed Ingredients</th>
-            <th>Used Ingredients</th>
-            <th>Unused Ingredients</th>
+            <th>Ingredients</th>
+            <th>Image</th>
+            <th>Link</th>
         </tr>
 
-        <tr th:each="recipe : ${recipes}">
-            <td th:text="${recipe.title}"></td>
-            <td th:text="${recipe.thumbnail}"></td>
-            <td th:text="${recipe.href}"></td>
-            <td th:text="${recipe.ingredients}"></td>
+        <tr th:each="result : ${results}">
+            <td><a th:href="@{${result.resultsHref}}"><p th:text="${result.resultsTitle}"></p></a></td>
+            <td th:text="${result.resultsIngredients}"></td>
+            <td><img th:src="@{${result.resultsThumbnail}}"/></td>
+            <td><a th:href="@{${result.resultsHref}}">Go to recipe<i class="fa fa-external-link-square" aria-hidden="true"></i></a></td>
         </tr>
     </table>
-
-    <div>
-        <p class="greeting-id">The ID is </p>
-        <p class="greeting-content">The content is </p>
-    </div>
 
 </div>
 

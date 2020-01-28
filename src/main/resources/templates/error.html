@@ -34,27 +34,7 @@
 </nav>
 
 <div class="container">
-    <h4 id="labels" th:text="${title}">Default Title</h4><br/>
-    <nav th:replace="fragments :: ingredientnavigation"></nav>
-
-    <table id="labels" class="table">
-        <tr>
-            <th>Recipe</th>
-            <th>Missed Ingredients</th>
-            <th>Used Ingredients</th>
-            <th>Unused Ingredients</th>
-        </tr>
-
-        <tr>
-            <th>Error, no results</th>
-        </tr>
-    </table>
-
-    <div>
-        <p class="greeting-id">The ID is </p>
-        <p class="greeting-content">The content is </p>
-    </div>
-
+    <h5><i class="fa-fa-exclamation-triangle"></i>Error -- keep at it LJ!<i class="fa-fa-exclamation-triangle"></i></h5>
 </div>
 
 <div th:replace="fragments :: javascript-footer"></div>

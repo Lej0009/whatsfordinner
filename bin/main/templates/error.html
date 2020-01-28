@@ -45,11 +45,8 @@
             <th>Unused Ingredients</th>
         </tr>
 
-        <tr th:each="recipe : ${recipes}">
-            <td th:text="${recipe.title}"></td>
-            <td th:text="${recipe.thumbnail}"></td>
-            <td th:text="${recipe.href}"></td>
-            <td th:text="${recipe.ingredients}"></td>
+        <tr>
+            <th>Error, no results</th>
         </tr>
     </table>
 

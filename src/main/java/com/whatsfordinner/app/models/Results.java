@@ -1,57 +1,65 @@
 package com.whatsfordinner.app.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Results {
+public class Results extends Recipe {
 
-    private String title;
-    private String href;
-    private String ingredients;
-    private String thumbnail;
+    @NestedConfigurationProperty
+    private String resultsTitle;
+
+    @NestedConfigurationProperty
+    private String resultsHref;
+
+    @NestedConfigurationProperty
+    private String resultsIngredients;
+
+    @NestedConfigurationProperty
+    private String resultsThumbnail;
 
     public Results() {
     }
 
-    public String getTitle() {
-        return title;
+    public String getResultsTitle() {
+        return resultsTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String resultsTitle) {
+        this.resultsTitle = resultsTitle;
     }
 
-    public String getHref() {
-        return href;
+    public String getResultsHref() {
+        return resultsHref;
     }
 
-    public void setHref(String href) {
-        this.href = href;
+    public void setHref(String resultsHref) {
+        this.resultsHref = resultsHref;
     }
 
-    public String getIngredients() {
-        return ingredients;
+    public String getResultsIngredients() {
+        return resultsIngredients;
     }
 
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredients(String resultsIngredients) {
+        this.resultsIngredients = resultsIngredients;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public String getResultsThumbnail() {
+        return resultsThumbnail;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setThumbnail(String resultsThumbnail) {
+        this.resultsThumbnail = resultsThumbnail;
     }
 
     @Override
     public String toString() {
         return "Results{" +
-                "title=" + title +
-                ", href=" + href +
-                ", ingredients=" + ingredients +
-                ", thumbnail=" + thumbnail +
+                "title=" + resultsTitle +
+                ", href=" + resultsHref +
+                ", ingredients=" + resultsIngredients +
+                ", thumbnail=" + resultsThumbnail +
                 "}";
     }
 

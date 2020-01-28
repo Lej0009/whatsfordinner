@@ -1,17 +1,18 @@
 package com.whatsfordinner.app.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import java.lang.reflect.Array;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
+@ConfigurationProperties
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Recipe {
-
+public class Recipe implements Serializable {
+    private static final long serialVersionUID = -3913629036907715099L;
     private String title;
+    private Number version;
     private String href;
-    private String ingredients;
     private ArrayList<Results> results;
 
     public Recipe() {
@@ -25,6 +26,14 @@ public class Recipe {
         this.title = title;
     }
 
+    public Number getVersion() {
+        return version;
+    }
+
+    public void setVersion(Number version) {
+        this.version = version;
+    }
+
     public String getHref() {
         return href;
     }
@@ -33,34 +42,22 @@ public class Recipe {
         this.href = href;
     }
 
-    public String getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    //    public Array getResults() {
-//        return results;
-//    }
-//
-//    public void setResults(Array results) {
-//        this.results = results;
-//    }
-
     public void setResults(ArrayList<Results> results) {
         this.results = results;
     }
 
+    public ArrayList<Results> getResults() {
+        return results;
+    }
 
     @Override
     public String toString() {
         return "Recipe{" +
                 "title=" + title +
+                "version=" + version +
                 ", href=" + href +
-                ", ingredients=" + ingredients +
                 ", results=" + results +
+                ", true" +
                 "}";
     }
 
