@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 * linguist-vendored
 *.java linguist-vendored=false
+=======
+* linguist-vendored
+*.java linguist-vendored=false
+>>>>>>> a7f2c6166dc636d59caaaf2194575cfc8f42e4c6
