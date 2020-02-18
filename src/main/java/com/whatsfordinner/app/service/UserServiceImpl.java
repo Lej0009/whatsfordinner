@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isUserAlreadyPresent(User user) {
         boolean isUserAlreadyExists = false;
-        Optional<User> existingUser = userDao.findByEmail(user.getEmail());
+        User existingUser = userDao.findByEmail(user.getEmail());
         // If user is found in database, then the user already exists.
         if(existingUser != null){
             isUserAlreadyExists = true;
@@ -46,12 +46,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional findUserByEmail(String email) {
+    public User findUserByEmail(String email) {
         return userDao.findByEmail(email);
     }
 
     @Override
-    public Optional findUserByResetToken(String resetToken) {
+    public User findUserByResetToken(String resetToken) {
         return userDao.findByResetToken(resetToken);
     }
 

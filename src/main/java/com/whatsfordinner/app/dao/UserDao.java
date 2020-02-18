@@ -10,11 +10,11 @@ import java.util.Optional;
 @Transactional
 public interface UserDao extends CrudRepository<User, Integer> {
 
-    Optional<User> findByEmail(String email);
+    User findByEmail(String email);
 
     User findByUserId(Integer userId);
 
     User findByPassword(String password);
 
-    Optional<User> findByResetToken(String resetToken);
+    User findByResetToken(String resetToken);
 }

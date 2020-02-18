@@ -33,7 +33,7 @@
     <div class="container">
 
         <h5 id="labels" th:text="${title}">Default Title</h5><br/>
-        <nav th:replace="fragments :: backnavigation"></nav>
+        <nav th:replace="fragments :: backnavigation"></nav><hr color="white"/>
 
         <form method="post">
             <div th:each="ingredient : ${ingredients}" class="checkbox">

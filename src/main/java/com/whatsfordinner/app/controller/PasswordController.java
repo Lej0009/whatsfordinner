@@ -48,28 +48,28 @@ public class PasswordController {
                                                   HttpServletRequest request) {
 
         // Lookup user in database by e-mail
-        Optional<User> optional = userService.findUserByEmail(userEmail);
+        User userLookup = userService.findUserByEmail(userEmail);
 
-        if (!optional.isPresent()) {
+        if (!userService.isUserAlreadyPresent(userLookup)) {
             modelAndView.addObject("errorMessage", "We didn't find an account for that e-mail address.");
         } else {
 
             // Generate random 36-character string token for reset password
-            User user = optional.get();
-            user.setResetToken(UUID.randomUUID().toString());
+//            User user = userLookup.get();
+            userLookup.setResetToken(UUID.randomUUID().toString());
 
             // Save token to database
-            userService.saveUser(user);
+            userService.saveUser(userLookup);
 
             String appUrl = request.getScheme() + "://" + request.getServerName();
 
             // Email message
             SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
             passwordResetEmail.setFrom("support@whatsfordinner.com");
-            passwordResetEmail.setTo(user.getEmail());
+            passwordResetEmail.setTo(userLookup.getEmail());
             passwordResetEmail.setSubject("Password Reset Request");
             passwordResetEmail.setText("To reset your password, click the link below:\n" + appUrl
-                    + "/reset?token=" + user.getResetToken());
+                    + "/reset?token=" + userLookup.getResetToken());
 
             emailService.sendEmail(passwordResetEmail);
 
@@ -86,9 +86,9 @@ public class PasswordController {
     @RequestMapping(value = "/resetpassword", method = RequestMethod.GET)
     public ModelAndView displayResetPasswordPage(ModelAndView modelAndView, @RequestParam("token") String token) {
 
-        Optional<User> user = userService.findUserByResetToken(token);
+        User user = userService.findUserByResetToken(token);
 
-        if (user.isPresent()) { // Token found in DB
+        if (userService.isUserAlreadyPresent(user)) { // Token found in DB
             modelAndView.addObject("resetToken", token);
         } else { // Token not found in DB
             modelAndView.addObject("errorMessage", "Oops!  This is an invalid password reset link.");
@@ -105,21 +105,21 @@ public class PasswordController {
                                         String> requestParams, RedirectAttributes redir) {
 
         // Find the user associated with the reset token
-        Optional<User> user = userService.findUserByResetToken(requestParams.get("token"));
+        User user = userService.findUserByResetToken(requestParams.get("token"));
 
         // This should always be non-null but we check just in case
-        if (user.isPresent() && password.equals(verifypassword)) {
+        if (userService.isUserAlreadyPresent(user) && password.equals(verifypassword)) {
 
-            User resetUser = user.get();
+//            User resetUser = user.get();
 
             // Set new password
-            resetUser.setPassword(bCryptPasswordEncoder.encode(requestParams.get("password")));
+            user.setPassword(bCryptPasswordEncoder.encode(requestParams.get("password")));
 
             // Set the reset token to null so it cannot be used again
-            resetUser.setResetToken(null);
+            user.setResetToken(null);
 
             // Save user
-            userService.saveUser(resetUser);
+            userService.saveUser(user);
 
             // In order to set a model attribute on a redirect, we must use
             // RedirectAttributes
